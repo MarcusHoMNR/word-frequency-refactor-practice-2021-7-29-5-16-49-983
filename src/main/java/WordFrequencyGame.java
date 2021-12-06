@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 //comments
 public class WordFrequencyGame {
 
-    private static final String SPACE_PATERN = "\\s+";
+    private static final String SPACE_PATTERN = "\\s+";
     private static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getFrequencyCountResult(String inputSentence){
@@ -25,7 +25,7 @@ public class WordFrequencyGame {
     }
 
     private List<WordInfo> countWordFrequency(String inputSentence) {
-        List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATERN));
+        List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATTERN));
         List<String> distinctInputWords = inputWords.stream().distinct().collect(Collectors.toList());
         List<WordInfo> resultWordInfos = new ArrayList<>();
 
