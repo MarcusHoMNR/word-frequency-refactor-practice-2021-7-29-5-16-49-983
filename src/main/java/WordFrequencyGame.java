@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
+import java.util.stream.Collectors;
+
 //naming
 //magic string
 //temp var
@@ -19,9 +17,7 @@ public class WordFrequencyGame {
         if (inputSentence.split(SPACE_PATERN).length==1) {
             return inputSentence + " 1";
         } else {
-
             try {
-
                 List<WordInfo> inputWordInfos = calculateWordFrequency(inputSentence);
 
                 inputWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
@@ -33,37 +29,27 @@ public class WordFrequencyGame {
                 }
                 return joiner.toString();
             } catch (Exception e) {
-
-
                 return "Calculate Error";
             }
         }
     }
 
     private List<WordInfo> calculateWordFrequency(String inputSentence) {
-        //split the input string with 1 to n pieces of spaces
-        String[] inputWords = inputSentence.split(SPACE_PATERN);
+        List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATERN));
+        List<String> distinctInputWords = inputWords.stream().distinct().collect(Collectors.toList());
+        List<WordInfo> resultWordInfos = new ArrayList<>();
 
-        List<WordInfo> inputWordInfos = new ArrayList<>();
-        for (String inputWord : inputWords) {
-            WordInfo wordInfo = new WordInfo(inputWord, 1);
-            inputWordInfos.add(wordInfo);
-        }
+        distinctInputWords.forEach(distinctInputWord -> {
+            int frequency = (int) inputWords.stream().filter(inputWord -> inputWord.equals(distinctInputWord)).count();
+            WordInfo resultWordInfo = new WordInfo(distinctInputWord, frequency);
+            resultWordInfos.add(resultWordInfo);
+        });
 
-        //get the map for the next step of sizing the same word
-        Map<String, List<WordInfo>> wordValueAndWordInfosMap =getListMap(inputWordInfos);
-
-        List<WordInfo> countedWordInfos = new ArrayList<>();
-        for (Map.Entry<String, List<WordInfo>> wordValueAndWordInfosEntryMap : wordValueAndWordInfosMap.entrySet()){
-            WordInfo wordInfo = new WordInfo(wordValueAndWordInfosEntryMap.getKey(), wordValueAndWordInfosEntryMap.getValue().size());
-            countedWordInfos.add(wordInfo);
-        }
-        inputWordInfos = countedWordInfos;
-        return inputWordInfos;
+        return resultWordInfos;
     }
 
 
-    private Map<String,List<WordInfo>> getListMap(List<WordInfo> wordInfoList) {
+        private Map<String,List<WordInfo>> getListMap(List<WordInfo> wordInfoList) {
         Map<String, List<WordInfo>> map = new HashMap<>();
         for (WordInfo wordInfo : wordInfoList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
