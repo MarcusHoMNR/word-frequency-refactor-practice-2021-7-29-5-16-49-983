@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class WordFrequencyGame {
+
+    private static final String SPACE_PATERN = "\\s+";
+
     public String getResult(String inputStr){
 
 
@@ -15,7 +18,7 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] words = inputStr.split("\\s+");
+                String[] words = inputStr.split(SPACE_PATERN);
 
                 List<WordInfo> wordInfoList = new ArrayList<>();
                 for (String s : words) {
