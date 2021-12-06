@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
 
     private static final String SPACE_PATERN = "\\s+";
+    private static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getFrequencyCountResult(String inputSentence){
         if (inputSentence.split(SPACE_PATERN).length==1) {
@@ -22,7 +23,7 @@ public class WordFrequencyGame {
 
                 return generateResultSentence(resultWordInfos);
             } catch (Exception e) {
-                return "Calculate Error";
+                return CALCULATE_ERROR;
             }
         }
     }
