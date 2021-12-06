@@ -11,7 +11,7 @@ public class WordFrequencyGame {
     public String getResult(String inputStr){
 
 
-        if (inputStr.split("\\s+").length==1) {
+        if (inputStr.split(SPACE_PATERN).length==1) {
             return inputStr + " 1";
         } else {
 
