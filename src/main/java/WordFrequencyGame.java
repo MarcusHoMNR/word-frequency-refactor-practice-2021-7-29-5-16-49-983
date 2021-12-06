@@ -20,20 +20,20 @@ public class WordFrequencyGame {
 
                 resultWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
-                return getResultSentence(resultWordInfos);
+                return generateResultSentence(resultWordInfos);
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
     }
 
-    private String getResultSentence(List<WordInfo> resultWordInfos) {
+    private String generateResultSentence(List<WordInfo> resultWordInfos) {
         StringJoiner resultJoiner = new StringJoiner("\n");
 
         resultWordInfos.forEach(resultWordInfo -> {
             resultJoiner.add(resultWordInfo.getWordValue() + " " +resultWordInfo.getWordCount());
         });
-        
+
         return resultJoiner.toString();
     }
 
