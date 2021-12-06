@@ -39,8 +39,7 @@ public class WordFrequencyGame {
 
         distinctInputWords.forEach(distinctInputWord -> {
             int frequency = (int) inputWords.stream().filter(inputWord -> inputWord.equals(distinctInputWord)).count();
-            WordInfo resultWordInfo = new WordInfo(distinctInputWord, frequency);
-            resultWordInfos.add(resultWordInfo);
+            resultWordInfos.add(new WordInfo(distinctInputWord, frequency));
         });
 
         return resultWordInfos;
