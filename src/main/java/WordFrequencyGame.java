@@ -12,18 +12,16 @@ public class WordFrequencyGame {
     private static final String SPACE_PATERN = "\\s+";
 
     public String getFrequencyCountResult(String inputSentence){
-
-
         if (inputSentence.split(SPACE_PATERN).length==1) {
             return inputSentence + " 1";
         } else {
             try {
-                List<WordInfo> inputWordInfos = calculateWordFrequency(inputSentence);
+                List<WordInfo> resultWordInfos = calculateWordFrequency(inputSentence);
 
-                inputWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                resultWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (WordInfo wordInfo : inputWordInfos) {
+                for (WordInfo wordInfo : resultWordInfos) {
                     String resultLine = wordInfo.getWordValue() + " " +wordInfo.getWordCount();
                     joiner.add(resultLine);
                 }
@@ -47,26 +45,4 @@ public class WordFrequencyGame {
 
         return resultWordInfos;
     }
-
-
-        private Map<String,List<WordInfo>> getListMap(List<WordInfo> wordInfoList) {
-        Map<String, List<WordInfo>> map = new HashMap<>();
-        for (WordInfo wordInfo : wordInfoList){
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(wordInfo.getWordValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(wordInfo);
-                map.put(wordInfo.getWordValue(), arr);
-            }
-
-            else {
-                map.get(wordInfo.getWordValue()).add(wordInfo);
-            }
-        }
-
-
-        return map;
-    }
-
-
 }
