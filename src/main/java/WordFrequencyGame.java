@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 // for loop
 //long method
 //comments
+// add test for catch
 public class WordFrequencyGame {
 
     private static final String SPACE_PATTERN = "\\s+";
