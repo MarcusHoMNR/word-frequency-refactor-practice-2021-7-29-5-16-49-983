@@ -14,7 +14,7 @@ public class WordFrequencyGame {
 
     public String getFrequencyCountResult(String inputSentence){
         try {
-            List<WordInfo> resultWordInfos = calculateWordFrequency(inputSentence);
+            List<WordInfo> resultWordInfos = countWordFrequency(inputSentence);
 
             resultWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -24,7 +24,7 @@ public class WordFrequencyGame {
         }
     }
 
-    private List<WordInfo> calculateWordFrequency(String inputSentence) {
+    private List<WordInfo> countWordFrequency(String inputSentence) {
         List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATERN));
         List<String> distinctInputWords = inputWords.stream().distinct().collect(Collectors.toList());
         List<WordInfo> resultWordInfos = new ArrayList<>();
