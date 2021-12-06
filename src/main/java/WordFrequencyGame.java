@@ -13,18 +13,14 @@ public class WordFrequencyGame {
     private static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getFrequencyCountResult(String inputSentence){
-        if (inputSentence.split(SPACE_PATERN).length==1) {
-            return inputSentence + " 1";
-        } else {
-            try {
-                List<WordInfo> resultWordInfos = calculateWordFrequency(inputSentence);
+        try {
+            List<WordInfo> resultWordInfos = calculateWordFrequency(inputSentence);
 
-                resultWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+            resultWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
-                return generateResultSentence(resultWordInfos);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+            return generateResultSentence(resultWordInfos);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
 
