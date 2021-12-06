@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
 
     private static final String SPACE_PATTERN = "\\s+";
-    private static final String CALCULATE_ERROR = "Calculate Error";
+    private static final String CALCULATION_ERROR = "Calculation Error";
 
     public String getFrequencyCountResult(String inputSentence){
         try {
@@ -21,7 +21,7 @@ public class WordFrequencyGame {
 
             return generateResultSentence(resultWordInfos);
         } catch (Exception e) {
-            return CALCULATE_ERROR;
+            return CALCULATION_ERROR;
         }
     }
 
