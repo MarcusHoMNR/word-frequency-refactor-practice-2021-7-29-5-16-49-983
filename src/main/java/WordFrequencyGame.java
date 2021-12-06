@@ -1,13 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-//naming
-//magic string
-//temp var
-// for loop
-//long method
-//comments
-// add test for catch
 public class WordFrequencyGame {
 
     private static final String SPACE_PATTERN = "\\s+";
