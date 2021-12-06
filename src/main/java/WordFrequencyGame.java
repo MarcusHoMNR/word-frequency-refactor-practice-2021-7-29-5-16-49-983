@@ -24,16 +24,6 @@ public class WordFrequencyGame {
         }
     }
 
-    private String generateResultSentence(List<WordInfo> resultWordInfos) {
-        StringJoiner resultJoiner = new StringJoiner("\n");
-
-        resultWordInfos.forEach(resultWordInfo -> {
-            resultJoiner.add(resultWordInfo.getWordValue() + " " +resultWordInfo.getWordCount());
-        });
-
-        return resultJoiner.toString();
-    }
-
     private List<WordInfo> calculateWordFrequency(String inputSentence) {
         List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATERN));
         List<String> distinctInputWords = inputWords.stream().distinct().collect(Collectors.toList());
@@ -45,5 +35,16 @@ public class WordFrequencyGame {
         });
 
         return resultWordInfos;
+    }
+
+
+    private String generateResultSentence(List<WordInfo> resultWordInfos) {
+        StringJoiner resultJoiner = new StringJoiner("\n");
+
+        resultWordInfos.forEach(resultWordInfo -> {
+            resultJoiner.add(resultWordInfo.getWordValue() + " " +resultWordInfo.getWordCount());
+        });
+
+        return resultJoiner.toString();
     }
 }
