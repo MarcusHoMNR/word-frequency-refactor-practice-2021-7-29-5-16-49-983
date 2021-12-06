@@ -42,7 +42,7 @@ public class WordFrequencyGame {
         StringJoiner resultJoiner = new StringJoiner("\n");
 
         resultWordInfos.forEach(resultWordInfo -> {
-            resultJoiner.add(resultWordInfo.getWordValue() + " " +resultWordInfo.getWordCount());
+            resultJoiner.add(String.format("%s %s", resultWordInfo.getWordValue(), resultWordInfo.getWordCount()));
         });
 
         return resultJoiner.toString();
