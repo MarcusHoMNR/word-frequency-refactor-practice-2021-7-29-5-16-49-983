@@ -8,7 +8,7 @@ public class WordFrequencyGame {
 
     private static final String SPACE_PATERN = "\\s+";
 
-    public String getResult(String inputSentence){
+    public String getFrequencyCountResult(String inputSentence){
 
 
         if (inputSentence.split(SPACE_PATERN).length==1) {
