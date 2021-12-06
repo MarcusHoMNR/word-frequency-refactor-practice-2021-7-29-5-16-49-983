@@ -3,7 +3,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-
+//naming
+//magic string
+//temp var
+// for loop
+//long method
+//comments
 public class WordFrequencyGame {
 
     private static final String SPACE_PATERN = "\\s+";
@@ -17,24 +22,7 @@ public class WordFrequencyGame {
 
             try {
 
-                //split the input string with 1 to n pieces of spaces
-                String[] inputWords = inputSentence.split(SPACE_PATERN);
-
-                List<WordInfo> inputWordInfos = new ArrayList<>();
-                for (String inputWord : inputWords) {
-                    WordInfo wordInfo = new WordInfo(inputWord, 1);
-                    inputWordInfos.add(wordInfo);
-                }
-
-                //get the map for the next step of sizing the same word
-                Map<String, List<WordInfo>> wordValueAndWordInfosMap =getListMap(inputWordInfos);
-
-                List<WordInfo> countedWordInfos = new ArrayList<>();
-                for (Map.Entry<String, List<WordInfo>> wordValueAndWordInfosEntryMap : wordValueAndWordInfosMap.entrySet()){
-                    WordInfo wordInfo = new WordInfo(wordValueAndWordInfosEntryMap.getKey(), wordValueAndWordInfosEntryMap.getValue().size());
-                    countedWordInfos.add(wordInfo);
-                }
-                inputWordInfos = countedWordInfos;
+                List<WordInfo> inputWordInfos = calculateWordFrequency(inputSentence);
 
                 inputWordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -50,6 +38,28 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private List<WordInfo> calculateWordFrequency(String inputSentence) {
+        //split the input string with 1 to n pieces of spaces
+        String[] inputWords = inputSentence.split(SPACE_PATERN);
+
+        List<WordInfo> inputWordInfos = new ArrayList<>();
+        for (String inputWord : inputWords) {
+            WordInfo wordInfo = new WordInfo(inputWord, 1);
+            inputWordInfos.add(wordInfo);
+        }
+
+        //get the map for the next step of sizing the same word
+        Map<String, List<WordInfo>> wordValueAndWordInfosMap =getListMap(inputWordInfos);
+
+        List<WordInfo> countedWordInfos = new ArrayList<>();
+        for (Map.Entry<String, List<WordInfo>> wordValueAndWordInfosEntryMap : wordValueAndWordInfosMap.entrySet()){
+            WordInfo wordInfo = new WordInfo(wordValueAndWordInfosEntryMap.getKey(), wordValueAndWordInfosEntryMap.getValue().size());
+            countedWordInfos.add(wordInfo);
+        }
+        inputWordInfos = countedWordInfos;
+        return inputWordInfos;
     }
 
 
