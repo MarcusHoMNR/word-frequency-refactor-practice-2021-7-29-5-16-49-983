@@ -1,42 +1,45 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
+    private static final String LINE_BREAK_DELIMITER = "\n";
     private static final String SPACE_PATTERN = "\\s+";
     private static final String CALCULATION_ERROR = "Calculation Error";
 
-    public String getFrequencyCountResult(String inputSentence){
+    public String getWordCount(String sentence) {
         try {
-            List<WordInfo> resultWordInfos = countWordFrequency(inputSentence);
+            List<WordInfo> wordInfos = countWordFrequency(sentence);
 
-            resultWordInfos.sort((wordInfo1, wordInfo2) -> wordInfo2.getWordCount() - wordInfo1.getWordCount());
+            wordInfos.sort((wordInfo1, wordInfo2) -> wordInfo2.getWordCount() - wordInfo1.getWordCount());
 
-            return generateResultSentence(resultWordInfos);
+            return generateWordWithCount(wordInfos);
         } catch (Exception e) {
             return CALCULATION_ERROR;
         }
     }
 
     private List<WordInfo> countWordFrequency(String inputSentence) {
-        List<String> inputWords = Arrays.asList(inputSentence.split(SPACE_PATTERN));
-        List<String> distinctInputWords = inputWords.stream().distinct().collect(Collectors.toList());
-        List<WordInfo> resultWordInfos = new ArrayList<>();
+        List<String> words = Arrays.asList(inputSentence.split(SPACE_PATTERN));
+        List<String> distinctWords = words.stream().distinct().collect(Collectors.toList());
+        List<WordInfo> wordInfos = new ArrayList<>();
 
-        distinctInputWords.forEach(distinctInputWord -> {
-            int frequency = (int) inputWords.stream().filter(inputWord -> inputWord.equals(distinctInputWord)).count();
-            resultWordInfos.add(new WordInfo(distinctInputWord, frequency));
+        distinctWords.forEach(distinctInputWord -> {
+            int frequency = (int) words.stream().filter(inputWord -> inputWord.equals(distinctInputWord)).count();
+            wordInfos.add(new WordInfo(distinctInputWord, frequency));
         });
 
-        return resultWordInfos;
+        return wordInfos;
     }
 
+    private String generateWordWithCount(List<WordInfo> wordInfos) {
+        StringJoiner resultJoiner = new StringJoiner(LINE_BREAK_DELIMITER);
 
-    private String generateResultSentence(List<WordInfo> resultWordInfos) {
-        StringJoiner resultJoiner = new StringJoiner("\n");
-
-        resultWordInfos.forEach(resultWordInfo -> {
-            resultJoiner.add(String.format("%s %s", resultWordInfo.getWordValue(), resultWordInfo.getWordCount()));
+        wordInfos.forEach(wordInfo -> {
+            resultJoiner.add(String.format("%s %s", wordInfo.getWordValue(), wordInfo.getWordCount()));
         });
 
         return resultJoiner.toString();
